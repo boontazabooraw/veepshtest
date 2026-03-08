@@ -31,12 +31,11 @@ function App() {
       } finally {
         setLoading(false);
         setFirstRenderDone(true);
-
       }
     }
     getData();
 
-  }, [page, municipality]);
+  }, [municipality, page]);
 
   return (
     <div className='min-h-screen relative'>
@@ -44,7 +43,7 @@ function App() {
       <Filters onValueChange={handleMunicipality} />
 
       {/* MAIN CARDS */}
-      <ul className="flex flex-wrap gap-10 justify-center py-10">
+      <ul className="flex flex-wrap gap-10 justify-center py-10 overflow-hidden">
         {
           shops.map(item => (
             <li key={item.id} className='relative w-100'>
@@ -77,5 +76,6 @@ export default App
 
 TODO
  - Search (To be fixed in the API)
- - Filters
+ - Filters (STILL BUGGY)
+ - Pagination (put TotalCount on API)
 */

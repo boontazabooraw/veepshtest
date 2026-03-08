@@ -7,6 +7,7 @@ function App() {
   const [isLoading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [error, setError] = useState();
+  const [firstRenderDone, setFirstRenderDone] = useState(false);
   const limit = 5
 
   useEffect(() => {
@@ -22,6 +23,7 @@ function App() {
         console.error(error)
       } finally {
         setLoading(false);
+        setFirstRenderDone(true);
       }
     }
     getData();
@@ -43,7 +45,7 @@ function App() {
           ))
         }
         {/* PAGINATION CONTROLS */}
-        <div className='flex justify-center gap-5 w-full'>
+        <div className={`${firstRenderDone ? 'flex' : 'hidden'} justify-center gap-5 w-full`}>
           <Button
             onClick={() => setPage(prev => Math.max(prev - 1, 1))}
             disabled={page === 1}

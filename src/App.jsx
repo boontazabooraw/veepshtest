@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import ShopCard from '@/components/ShopCard';
+import Filters from '@/components/Filters'
 import { Button } from '@/components/ui/button';
 
 function App() {
@@ -8,7 +9,8 @@ function App() {
   const [page, setPage] = useState(1);
   const [error, setError] = useState();
   const [firstRenderDone, setFirstRenderDone] = useState(false);
-  const limit = 5
+  const limit = 5;
+  const totalAll = 30; //To be fixed in the API
 
   useEffect(() => {
     const getData = async () => {
@@ -24,15 +26,20 @@ function App() {
       } finally {
         setLoading(false);
         setFirstRenderDone(true);
+
       }
     }
     getData();
 
   }, [page]);
 
+  console.log(shops.length)
 
   return (
     <div className='min-h-screen relative'>
+      {/* FILTERS */}
+      <Filters />
+
       {/* MAIN CARDS */}
       <ul className="flex flex-wrap gap-10 justify-center py-10">
         {
@@ -52,7 +59,7 @@ function App() {
             variant="outline" className="rounded-full! h-15 w-15">&lt;</Button>
           <Button
             onClick={() => setPage(prev => Math.max(prev + 1, 1))}
-            disabled={page === 6}
+            disabled={page === totalAll / limit}
             variant="outline" className="rounded-full! h-15 w-15">&gt;</Button>
         </div>
       </ul>
@@ -66,5 +73,6 @@ export default App
 /*
 
 TODO
- - Pagination
+ - Search (To be fixed in the API)
+ - Filters
 */

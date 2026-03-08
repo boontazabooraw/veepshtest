@@ -9,14 +9,19 @@ function App() {
   const [page, setPage] = useState(1);
   const [error, setError] = useState();
   const [firstRenderDone, setFirstRenderDone] = useState(false);
+  const [municipality, setMunicipality] = useState('');
   const limit = 5;
   const totalAll = 30; //To be fixed in the API
+
+  const handleMunicipality = (value) => {
+    value === "All" ? setMunicipality('') : setMunicipality(value);
+  }
 
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
       try {
-        const fetched = await fetch(`https://veepsh.onrender.com?limit=${limit}&page=${page}`);
+        const fetched = await fetch(`https://veepsh.onrender.com?municipality=${municipality}&limit=${limit}&page=${page}`);
         let apiJson = await fetched.json();
 
         setShops(apiJson.data);
@@ -31,14 +36,12 @@ function App() {
     }
     getData();
 
-  }, [page]);
-
-  console.log(shops.length)
+  }, [page, municipality]);
 
   return (
     <div className='min-h-screen relative'>
       {/* FILTERS */}
-      <Filters />
+      <Filters onValueChange={handleMunicipality} />
 
       {/* MAIN CARDS */}
       <ul className="flex flex-wrap gap-10 justify-center py-10">

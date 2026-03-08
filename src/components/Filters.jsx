@@ -8,27 +8,30 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-const Filters = () => {
+const Filters = ({ onValueChange }) => {
+    
     return (
         <div className="flex justify-evenly pt-8">
-            <Select>
+            <Select onValueChange={onValueChange}>
                 <SelectTrigger className="w-full max-w-80">
                     <SelectValue placeholder="Select Municipality" />
                 </SelectTrigger>
                 <SelectContent>
                     <SelectGroup>
                         <SelectLabel>Municipality</SelectLabel>
-                        <SelectItem value="apple">Abucay</SelectItem>
-                        <SelectItem value="banana">Bagac</SelectItem>
-                        <SelectItem value="blueberry">Dinalupihan</SelectItem>
-                        <SelectItem value="grapes">Hermosa</SelectItem>
-                        <SelectItem value="pineapple">Limay</SelectItem>
-                        <SelectItem value="pineapple">Mariveles</SelectItem>
-                        <SelectItem value="pineapple">Morong</SelectItem>
-                        <SelectItem value="pineapple">Orani</SelectItem>
-                        <SelectItem value="pineapple">Orion</SelectItem>
-                        <SelectItem value="pineapple">Pilar</SelectItem>
-                        <SelectItem value="pineapple">Samal</SelectItem>
+                        <SelectItem value="All">All</SelectItem>
+                        <SelectItem value="abucay">Abucay</SelectItem>
+                        <SelectItem value="bagac">Bagac</SelectItem>
+                        <SelectItem value="balanga">Balanga</SelectItem>
+                        <SelectItem value="dinalupihan">Dinalupihan</SelectItem>
+                        <SelectItem value="hermosa">Hermosa</SelectItem>
+                        <SelectItem value="limay">Limay</SelectItem>
+                        <SelectItem value="mariveles">Mariveles</SelectItem>
+                        <SelectItem value="morong">Morong</SelectItem>
+                        <SelectItem value="orani">Orani</SelectItem>
+                        <SelectItem value="orion">Orion</SelectItem>
+                        <SelectItem value="pilar">Pilar</SelectItem>
+                        <SelectItem value="samal">Samal</SelectItem>
                     </SelectGroup>
                 </SelectContent>
             </Select>

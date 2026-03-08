@@ -11,7 +11,7 @@ import {
 const Filters = ({ onValueChange }) => {
     
     return (
-        <div className="flex justify-evenly pt-8">
+        <div className="flex justify-evenly p-4">
             <Select onValueChange={onValueChange}>
                 <SelectTrigger className="w-full max-w-80">
                     <SelectValue placeholder="Select Municipality" />

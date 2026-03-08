@@ -200,7 +200,7 @@ const Map = forwardRef(function Map(
       clearStyleTimeout();
       map.off("load", loadHandler);
       map.off("styledata", styleDataHandler);
-      map.off("move", handleMove);
+      
       map.remove();
       setIsLoaded(false);
       setIsStyleLoaded(false);

@@ -5,13 +5,13 @@ import { Button } from '@/components/ui/button';
 
 function App() {
   const [shops, setShops] = useState([]);
+  const [totalAll, setTotalAll] = useState(0)
   const [isLoading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [error, setError] = useState();
   const [firstRenderDone, setFirstRenderDone] = useState(false);
   const [municipality, setMunicipality] = useState('');
   const limit = 5;
-  const totalAll = 30; //To be fixed in the API
 
   const handleMunicipality = (value) => {
     value === "All" ? setMunicipality('') : setMunicipality(value);
@@ -21,10 +21,16 @@ function App() {
     const getData = async () => {
       setLoading(true);
       try {
-        const fetched = await fetch(`https://veepsh.onrender.com?municipality=${municipality}&limit=${limit}&page=${page}`);
+
+        // Switch the fetch variable to localhost if in local development
+
+        // const fetched = await fetch(`https://veepsh.onrender.com?municipality=${municipality}&limit=${limit}&page=${page}`);
+        const fetched = await fetch(`http://localhost:3000?municipality=${municipality}&limit=${limit}&page=${page}`);
         let apiJson = await fetched.json();
 
         setShops(apiJson.data);
+        setTotalAll(apiJson.count);
+
       } catch (err) {
         setError(err);
         console.error(error)
@@ -36,6 +42,8 @@ function App() {
     getData();
 
   }, [municipality, page]);
+
+  console.log(totalAll);
 
   return (
     <div className='min-h-screen relative'>

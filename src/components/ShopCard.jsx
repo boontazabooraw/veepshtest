@@ -1,14 +1,24 @@
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { Card, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Map, MapMarker, MarkerContent } from "@/components/ui/map"
 
-const ShopCard = ({ long, lat, shopName, address, loading }) => {
+const ShopCard = ({ long, lat, shopName, address, loading, opening_hours }) => {
+
+    const bg_gradient_title = "bg-gradient-to-b from-black via-black to-transparent";
+    const isLongLat = long != null || lat != null;
 
     return (
-        <Card className={`relative mx-auto w-full pt-0 overflow-hidden pointer-events-none transition-all duration-300 ${loading ? "opacity-30" : "opacity-100"}`}>
+        <Card className={`relative mx-auto w-full pt-0 overflow-hidden transition-all duration-300 ${loading ? "opacity-30" : "opacity-100"}`}>
+            <CardContent className={`pointer-events-auto! absolute cardgradbg w-full font-light z-10 ${isLongLat && bg_gradient_title}`}>
+                <CardTitle>{shopName}</CardTitle>
+                <CardDescription>
+                    <span className="text-xs">{address}</span>
+                </CardDescription>
+            </CardContent>
             {
-                long != null || lat != null ?
+                isLongLat ?
                     (
-                        <Map center={[long, lat]} zoom={15} className="h-60 aspect-video">
+                        <Map center={[long, lat + .0008]} zoom={15} className="h-80 aspect-video relative pointer-events-none!">
+
                             <MapMarker longitude={long} latitude={lat}>
                                 <MarkerContent className="relative">
                                     {/* <div className="absolute bg-red-300 size-1" /> */}
@@ -16,17 +26,18 @@ const ShopCard = ({ long, lat, shopName, address, loading }) => {
                                     <div className="absolute size-3 bg-red-400 rotate-45 skew-20 transform -translate-y-4 -translate-x-1" />
                                 </MarkerContent>
                             </MapMarker>
-                        </Map>)
+                        </Map>
+                    )
                     :
                     (
-                        <div className="h-60 bg-neutral-800 flex justify-center items-center"><p className="tracking-widest opacity-50">No Map Data Available.</p></div>)
+                        <div className="h-80 bg-neutral-800 flex justify-center items-center relative">
+                            <p className="tracking-widest opacity-50 pt-15">No Map Data Available.</p>
+                        </div>
+                    )
             }
-            <CardContent className="pointer-events-auto!">
-                <CardTitle>{shopName}</CardTitle>
-                <CardDescription>
-                    {address}
-                </CardDescription>
-            </CardContent>
+            <CardFooter className="justify-center bg-neutral-800 border-t py-0.5">
+                <span className="text-xs tracking-[3.5px] opacity-60">{opening_hours || "No Data Available."}</span>
+            </CardFooter>
         </Card>
     )
 }

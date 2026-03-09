@@ -7,7 +7,6 @@ import { Spinner } from "@/components/ui/spinner"
 
 function App() {
   const [shops, setShops] = useState([]);
-  const [totalAll, setTotalAll] = useState(0)
   const [totalReturned, setTotalReturned] = useState(0);
   const [isLoading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -34,13 +33,13 @@ function App() {
 
         let apiJson = await fetched.json();
 
-        setShops(apiJson.data);
+        setShops(apiJson.shops);
         setLastPage(apiJson.meta.last_page);
         setTotalReturned(apiJson.meta.returned);
 
       } catch (err) {
         setError(err);
-        console.error(err)
+        console.error(err, error);
       } finally {
         setLoading(false);
         setFirstRenderDone(true);
@@ -48,7 +47,7 @@ function App() {
     }
     getData();
 
-  }, [municipality, page]);
+  }, [municipality, lastPage, page]);
 
 
 
@@ -68,7 +67,7 @@ function App() {
             totalReturned > 0 ? (
               shops.map(item => (
                 <li key={item.id} className='relative max-w-100 w-80 md:w-100'>
-                  <ShopCard long={item.longitude} lat={item.latitude} shopName={item.name} address={item.address}
+                  <ShopCard long={item.longitude} lat={item.latitude} shopName={item.name} address={item.address} opening_hours={item.opening_hours}
                     loading={isLoading}
                   />
                 </li>
@@ -109,5 +108,4 @@ export default App
 TODO
  - Search (To be fixed in the API)
  - Filters (STILL BUGGY)
- - Pagination (put TotalCount on API)
 */

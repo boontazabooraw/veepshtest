@@ -75,7 +75,7 @@ function CardContent({
   className,
   ...props
 }) {
-  return (<div data-slot="card-content" className={cn("px-6 min-h-30 flex flex-col justify-evenly gap-3", className)} {...props} />);
+  return (<div data-slot="card-content" className={cn("px-6 min-h-25 flex flex-col justify-center gap-4", className)} {...props} />);
 }
 
 function CardFooter({
@@ -85,7 +85,7 @@ function CardFooter({
   return (
     <div
       data-slot="card-footer"
-      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      className={cn("flex items-center px-6", className)}
       {...props} />
   );
 }

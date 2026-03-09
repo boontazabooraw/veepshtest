@@ -1,12 +1,10 @@
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Map, MapMarker, MarkerContent } from "@/components/ui/map"
 
-const ShopCard = ({ long, lat, shopName, address, loading, totalShops }) => {
-
-    console.log("total shown: ", totalShops)
+const ShopCard = ({ long, lat, shopName, address, loading }) => {
 
     return (
-        <Card className={`relative mx-auto w-full pt-0 overflow-hidden pointer-events-none transition-all duration-300 ${loading}`}>
+        <Card className={`relative mx-auto w-full pt-0 overflow-hidden pointer-events-none transition-all duration-300 ${loading ? "opacity-30" : "opacity-100"}`}>
             {
                 long != null || lat != null ?
                     (

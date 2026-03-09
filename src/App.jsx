@@ -11,6 +11,7 @@ function App() {
   const [totalReturned, setTotalReturned] = useState(0);
   const [isLoading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [lastPage, setLastPage] = useState(1)
   const [error, setError] = useState();
   const [firstRenderDone, setFirstRenderDone] = useState(false);
   const [municipality, setMunicipality] = useState('');
@@ -18,6 +19,7 @@ function App() {
 
   const handleMunicipality = (value) => {
     value === "All" ? setMunicipality('') : setMunicipality(value);
+    setPage(1);
   }
 
   useEffect(() => {
@@ -33,12 +35,12 @@ function App() {
         let apiJson = await fetched.json();
 
         setShops(apiJson.data);
-        setTotalReturned(apiJson.returned);
-        setTotalAll(apiJson.count);
+        setLastPage(apiJson.meta.last_page);
+        setTotalReturned(apiJson.meta.returned);
 
       } catch (err) {
         setError(err);
-        console.error(error)
+        console.error(err)
       } finally {
         setLoading(false);
         setFirstRenderDone(true);
@@ -47,6 +49,8 @@ function App() {
     getData();
 
   }, [municipality, page]);
+
+
 
   return (
     <div className='min-h-screen relative'>
@@ -65,8 +69,7 @@ function App() {
               shops.map(item => (
                 <li key={item.id} className='relative max-w-100 w-80 md:w-100'>
                   <ShopCard long={item.longitude} lat={item.latitude} shopName={item.name} address={item.address}
-                    totalShops={totalReturned}
-                    loading={`${isLoading ? "opacity-30" : "opacity-100"}`}
+                    loading={isLoading}
                   />
                 </li>
               ))
@@ -80,16 +83,21 @@ function App() {
       </ul>
 
       {/* PAGINATION CONTROLS */}
-      <div className={`${firstRenderDone ? 'flex' : 'hidden'} justify-center gap-5 w-full py-4`}>
-        <Button
-          onClick={() => setPage(prev => Math.max(prev - 1, 1))}
-          disabled={page === 1}
-          variant="outline" className="rounded-full! h-15 w-15">&lt;</Button>
-        <Button
-          onClick={() => setPage(prev => Math.max(prev + 1, 1))}
-          disabled={page === totalAll / limit || totalReturned < limit}
-          variant="outline" className="rounded-full! h-15 w-15">&gt;</Button>
-      </div>
+
+      {
+        totalReturned != 0 && (
+          <div className={`${firstRenderDone ? 'flex' : 'hidden'} justify-center gap-5 w-full py-4`}>
+            <Button
+              onClick={() => setPage(prev => Math.max(prev - 1, 1))}
+              disabled={page === 1}
+              variant="outline" className="rounded-full! h-15 w-15">&lt;</Button>
+            <Button
+              onClick={() => setPage(prev => Math.max(prev + 1, 1))}
+              disabled={page === lastPage}
+              variant="outline" className="rounded-full! h-15 w-15">&gt;</Button>
+          </div>
+        )
+      }
     </div>
   )
 }

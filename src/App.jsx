@@ -28,8 +28,8 @@ function App() {
 
         // Switch the fetch variable to localhost if in local development
 
-        //const fetched = await fetch(`https://veepsh.onrender.com?municipality=${municipality}&limit=${limit}&page=${page}`);
-        const fetched = await fetch(`http://localhost:3000?municipality=${municipality}&limit=${limit}&page=${page}`);
+        const fetched = await fetch(`https://veepsh.onrender.com?municipality=${municipality}&limit=${limit}&page=${page}`);
+        //const fetched = await fetch(`http://localhost:3000?municipality=${municipality}&limit=${limit}&page=${page}`);
 
         let apiJson = await fetched.json();
 

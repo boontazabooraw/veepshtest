@@ -11,9 +11,9 @@ import {
 const Filters = ({ onValueChange }) => {
 
     return (
-        <div className="flex justify-evenly p-4">
-            <Select onValueChange={onValueChange}>
-                <SelectTrigger className="w-full max-w-80">
+        <div className="flex justify-center p-4">
+            <Select onValueChange={onValueChange} >
+                <SelectTrigger className="grow max-w-60">
                     <SelectValue placeholder="Select Municipality" />
                 </SelectTrigger>
                 <SelectContent>

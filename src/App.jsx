@@ -52,21 +52,21 @@ function App() {
 
 
   return (
-    <div className='min-h-screen relative px-20'>
+    <div className='min-h-screen relative place-content-center '>
       {/* FILTERS */}
       <Filters onValueChange={handleMunicipality} />
 
       {/* MAIN CARDS */}
-      <ul className="flex flex-wrap gap-6 justify-center h-full">
+      <ul className="gap-6 h-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 px-6">
         {
           !firstRenderDone ? (
-            <div className='min-w-screen flex justify-center py-50'>
-              <Spinner className="size-15" />
+            <div className='justify-center py-50 relative'>
+              <Spinner className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 size-15" />
             </div>
           ) : (
             totalReturned > 0 ? (
               shops.map(item => (
-                <li key={item.id} className='relative max-w-100 w-80 md:w-100'>
+                <li key={item.id} className='relative min-w-50 min-h-60 lg:min-h-65 xl:min-h-95 col-span-1'>
                   <ShopCard long={item.longitude} lat={item.latitude} shopName={item.name} address={item.address} opening_hours={item.opening_hours}
                     loading={isLoading}
                   />

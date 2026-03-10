@@ -7,7 +7,7 @@ const ShopCard = ({ long, lat, shopName, address, loading, opening_hours }) => {
     const isLongLat = long != null || lat != null;
 
     return (
-        <Card className={`relative mx-auto w-full pt-0 overflow-hidden transition-all duration-300 ${loading ? "opacity-30" : "opacity-100"}`}>
+        <Card className={`absolute mx-auto h-full w-full pt-0 overflow-hidden transition-all duration-300 ${loading ? "opacity-30" : "opacity-100"}`}>
             <CardContent className={`pointer-events-auto! absolute cardgradbg w-full font-light z-10 ${isLongLat && bg_gradient_title}`}>
                 <CardTitle>{shopName}</CardTitle>
                 <CardDescription>
@@ -17,7 +17,7 @@ const ShopCard = ({ long, lat, shopName, address, loading, opening_hours }) => {
             {
                 isLongLat ?
                     (
-                        <Map center={[long, lat + .0008]} zoom={15} className="h-80 aspect-video relative pointer-events-none!">
+                        <Map center={[long, lat + .0008]} zoom={15} className="aspect-video relative pointer-events-none!">
 
                             <MapMarker longitude={long} latitude={lat}>
                                 <MarkerContent className="relative">
@@ -30,7 +30,7 @@ const ShopCard = ({ long, lat, shopName, address, loading, opening_hours }) => {
                     )
                     :
                     (
-                        <div className="h-80 aspect-video bg-neutral-800 flex justify-center items-center relative">
+                        <div className="h-full aspect-video bg-neutral-800 flex justify-center items-center relative">
                             <p className="tracking-widest opacity-50 pt-15">No Map Data Available.</p>
                         </div>
                     )

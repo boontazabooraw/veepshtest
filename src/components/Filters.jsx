@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select"
 
 const Filters = ({ onValueChange }) => {
-    
+
     return (
         <div className="flex justify-evenly p-4">
             <Select onValueChange={onValueChange}>
@@ -22,7 +22,7 @@ const Filters = ({ onValueChange }) => {
                         <SelectItem value="All">All</SelectItem>
                         <SelectItem value="abucay">Abucay</SelectItem>
                         <SelectItem value="bagac">Bagac</SelectItem>
-                        <SelectItem value="balanga">Balanga</SelectItem>
+                        <SelectItem value="balanga_city">Balanga City</SelectItem>
                         <SelectItem value="dinalupihan">Dinalupihan</SelectItem>
                         <SelectItem value="hermosa">Hermosa</SelectItem>
                         <SelectItem value="limay">Limay</SelectItem>

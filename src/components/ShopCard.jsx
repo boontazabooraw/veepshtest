@@ -30,7 +30,7 @@ const ShopCard = ({ long, lat, shopName, address, loading, opening_hours }) => {
                     )
                     :
                     (
-                        <div className="h-80 bg-neutral-800 flex justify-center items-center relative">
+                        <div className="h-80 aspect-video bg-neutral-800 flex justify-center items-center relative">
                             <p className="tracking-widest opacity-50 pt-15">No Map Data Available.</p>
                         </div>
                     )

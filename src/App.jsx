@@ -52,12 +52,12 @@ function App() {
 
 
   return (
-    <div className='min-h-screen relative'>
+    <div className='min-h-screen relative px-20'>
       {/* FILTERS */}
       <Filters onValueChange={handleMunicipality} />
 
       {/* MAIN CARDS */}
-      <ul className="flex flex-wrap gap-6 justify-center h-full overflow-hidden w-screen">
+      <ul className="flex flex-wrap gap-6 justify-center h-full">
         {
           !firstRenderDone ? (
             <div className='min-w-screen flex justify-center py-50'>

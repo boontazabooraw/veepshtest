@@ -33,13 +33,13 @@ const ShopCard = ({ long, lat, shopName, address, loading, opening_hours }) => {
                     )
                     :
                     (
-                        <div className="h-full aspect-video bg-neutral-800 flex justify-center items-center relative">
+                        <div className="h-2/2 bg-neutral-800 flex justify-center items-center relative">
                             <p className="tracking-widest opacity-50 pt-15">No Map Data Available.</p>
                         </div>
                     )
             }
             <CardFooter className="justify-center bg-neutral-800 border-t py-0.5 z-10">
-                <span className="text-xs tracking-[3.5px] opacity-60">{opening_hours || "No Data Available."}</span>
+                <span className="text-xs tracking-[3.5px] opacity-50">{opening_hours || "No Data Available."}</span>
             </CardFooter>
         </Card>
     )

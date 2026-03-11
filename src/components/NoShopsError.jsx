@@ -1,8 +1,6 @@
-import React from 'react'
-
 const NoShopsError = () => {
     return (
-        <div className='min-h-[50dvh] flex justify-center items-center'>
+        <div className='flex justify-center items-center h-full absolute w-full'>
             <p>No shops available.</p>
         </div>
     )

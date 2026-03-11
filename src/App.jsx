@@ -78,7 +78,7 @@ function App() {
           <ul className={`px-6 gap-6 ${totalReturned < limit ? "flex justify-center items-center flex-wrap min-w-full" : "grid h-full grid-cols-1 md:grid-cols-3  md:grid-rows-2 xl:grid-cols-3"}`}>
             {
               shops.map(item => (
-                <li key={item.id} className={`relative min-w-50 max-w-full min-h-55 lg:min-h-65 xl:min-h-80 2xl:min-h-120 col-span-1 rows-span-6 basis-md`}>
+                <li key={item.id} className={`relative min-w-50 max-w-full min-h-55 md:min-h-80 lg:min-h-65 xl:min-h-80 2xl:min-h-95 col-span-1 rows-span-6 basis-md`}>
                   <ShopCard long={item.longitude} lat={item.latitude} shopName={item.name} address={item.address} opening_hours={item.opening_hours}
                     loading={isLoading}
                   />

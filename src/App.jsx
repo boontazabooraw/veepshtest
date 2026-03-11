@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useWindowSize } from "@uidotdev/usehooks";
 import ShopCard from '@/components/ShopCard';
 import Filters from '@/components/Filters'
 import { Button } from '@/components/ui/button';
@@ -14,7 +15,9 @@ function App() {
   const [error, setError] = useState();
   const [firstRenderDone, setFirstRenderDone] = useState(false);
   const [municipality, setMunicipality] = useState('');
-  const limit = 6;
+  const [limit, setLimit] = useState(3);
+
+  const windowSize = useWindowSize();
 
   const handleMunicipality = (value) => {
     value === "All" ? setMunicipality('') : setMunicipality(value);
@@ -24,6 +27,14 @@ function App() {
   useEffect(() => {
     const getData = async () => {
       setLoading(true);
+
+      // Set Limit per page by viewport width
+      if (windowSize.width >= 768) {
+        setLimit(6);
+      } else {
+        setLimit(3);
+      }
+
       try {
 
         // Switch the fetch variable to localhost if in local development
@@ -47,7 +58,7 @@ function App() {
     }
     getData();
 
-  }, [municipality, lastPage, page]);
+  }, [municipality, lastPage, windowSize, page, limit, error]);
 
 
 

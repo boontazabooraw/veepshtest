@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Card, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Map, MapMarker, MarkerContent } from "@/components/ui/map"
 
@@ -45,4 +47,4 @@ const ShopCard = ({ long, lat, shopName, address, loading, opening_hours }) => {
     )
 }
 
-export default ShopCard;
+export default React.memo(ShopCard);
